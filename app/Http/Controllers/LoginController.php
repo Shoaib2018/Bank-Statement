@@ -24,6 +24,7 @@ class LoginController extends Controller
         $account = $this->accountRepo->login($req->account, $req->password);
 
         if (isset($account) && isset($account->id)) {
+            $req->session()->put('accountId', $account->bank_account);
             return redirect()->route('statement');
         } else {
             return redirect()->route('login');
