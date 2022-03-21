@@ -11,27 +11,29 @@ class StatementRepository implements IStatementRepository
     public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
-            $product_inventory = new statement;
-            $product_inventory->product_id = $collection['product_id'];
-            $product_inventory->SKU = $collection['sku'];
-            $product_inventory->stock_quantity = $collection['stock_quantity'];
-            $product_inventory->unit_buying_price = $collection['unit_buying_price'];
-            $product_inventory->unit_selling_price = $collection['unit_selling_price'];
-            $product_inventory->save();
-            return $product_inventory;
+            $statement = new statement;
+            $statement->product_id = $collection['product_id'];
+            $statement->SKU = $collection['sku'];
+            $statement->stock_quantity = $collection['stock_quantity'];
+            $statement->unit_buying_price = $collection['unit_buying_price'];
+            $statement->unit_selling_price = $collection['unit_selling_price'];
+            $statement->save();
+            return $statement;
         }
-        $product_inventory = statement::find($id);
-        $product_inventory->product_id = $collection['product_id'];
-        $product_inventory->SKU = $collection['sku'];
-        $product_inventory->stock_quantity = $collection['stock_quantity'];
-        $product_inventory->unit_buying_price = $collection['unit_buying_price'];
-        $product_inventory->unit_selling_price = $collection['unit_selling_price'];
-        $product_inventory->save();
-        return $product_inventory;
+        $statement = statement::find($id);
+        $statement->product_id = $collection['product_id'];
+        $statement->SKU = $collection['sku'];
+        $statement->stock_quantity = $collection['stock_quantity'];
+        $statement->unit_buying_price = $collection['unit_buying_price'];
+        $statement->unit_selling_price = $collection['unit_selling_price'];
+        $statement->save();
+        return $statement;
     }
 
-    public function getStatement($proId) {
-        $data = statement::where('product_id', '=', $proId)->first();        
+    public function getStatement($accountId) {
+        $data = Statements::where('bank_account', '=', $accountId)
+                        ->orderBy('statement_date', 'DESC')
+                        ->paginate(20);        
         
         return $data;
     }
