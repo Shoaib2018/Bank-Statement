@@ -7,7 +7,7 @@ interface IStatementRepository
 
     //public function getSubCategoryById($id);
 
-    public function createOrUpdate( $id = null, $collection = [] );
+    public function createOrUpdate( $bank_account, $collection = [], $id = null );
 
     //public function subCategoryByCategory($cid);
 

@@ -22,4 +22,22 @@ class StatementController extends Controller
 
         return view('statement/index', ['statements' => $statements]);
     }
+
+    public function new()
+    {
+        return view('statement/new');
+    }
+
+    public function add(Request $request)
+    {
+        $accountId = Session::get('accountId');
+        $collection['statement_date'] = $request->statement_date;
+        $collection['cr_dr'] = $request->cr_dr;
+        $collection['particulars'] = $request->particulars;
+        $collection['amount'] = $request->amount;
+
+        $newStatement = $this->statementRepo->createOrUpdate($accountId, $collection);
+
+        return redirect()->route('statement');
+    }
 }
