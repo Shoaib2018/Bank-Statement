@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repository\Interfaces\IAccountRepository;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,11 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('login/index');
+        if (!is_null(Session::get('accountId'))) {
+            return redirect()->route('statement');
+        } else {
+            return view('login/index');
+        }
     }
 
     public function login(Request $req)
