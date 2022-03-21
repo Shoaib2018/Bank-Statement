@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Statements extends Migration
+class CreateStatementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class Statements extends Migration
             $table->date('statement_date');
             $table->string('cr_dr');
             $table->string('particulars');
-            $table->double('ammount');
+            $table->double('amount');
         });
     }
 
@@ -30,6 +30,6 @@ class Statements extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('statements');
     }
 }
