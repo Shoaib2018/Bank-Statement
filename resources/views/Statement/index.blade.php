@@ -13,7 +13,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/statment.css')}}">
 
 </head>
-<body>
+<body class="mt-5">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <a href="/new">Add New</a>
+        </div>
+    </div>
     <div class="container">
         <div class="d-flex justify-content-center">
             <!--Table-->
@@ -42,13 +47,13 @@
                         <tr>
                         @endif
                             <th scope="row">{{ $key+1 }}</th>
-                            <td>{{ $statement->statement_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($statement->statement_date)->format('d/m/Y')}}</td>
                             <td>{{ $statement->particulars }}</td>
                             @if($statement->cr_dr == 'Credit')
                             <td></td>
-                            <td>{{ $statement->ammount }}</td>
+                            <td>{{ $statement->amount }}</td>
                             @else
-                            <td>{{ $statement->ammount }}</td>
+                            <td>{{ $statement->amount }}</td>
                             <td></td>
                             @endif
                             <td></td>
