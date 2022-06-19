@@ -21,5 +21,5 @@ Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login'
 Route::post('/login', 'App\Http\Controllers\LoginController@login');
 
 Route::get('/statement', 'App\Http\Controllers\StatementController@index')->name('statement');
-Route::get('/new', 'App\Http\Controllers\StatementController@new')->name('new');
 Route::post('/new', 'App\Http\Controllers\StatementController@add');
+Route::delete('/remove-statement/{id}', 'App\Http\Controllers\StatementController@destroy')->name('statement.destroy');
